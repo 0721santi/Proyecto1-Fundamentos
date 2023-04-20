@@ -1,31 +1,60 @@
-public class personas{
-    private String nombre;
-    private String apellido;
-    private String genero;
-    private int edad;
-    private int anio;
-    public Persona(){
-        nombre = "";
-        apellido = "";
-        genero = "";
-        edad = 0;
-        anio = 0;
+public class Personas{
+    private String nombre, apellido, genero;
+    private int edad, anio;
+    
+    //Constructor DEF
+    Personas(){
+       nombre = "" ;
+       apellido = "";
+       genero = "";
+       edad = 0;
+       anio = 0;
     }
+    
+    //Constructor
+    Personas(String nombre, String apellido, String genero, int edad, int anio){
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.genero = genero;
+        this.edad = edad;
+        this.anio = anio;
+    }
+    
+    //Setters
     public void setNombre(String nombre){
-
+        this.nombre = nombre;
     }
     public void setApellido(String apellido){
+        this.apellido = apellido;
+    }
+    public void setGenero(String genero){
+        this.genero = genero;
+    }
+    public void setEdad(int edad){
+        this.edad = edad;
+    }
+    public void setAnio(int anio){
+        this.anio = anio;
+    }
 
+    //Getters
+    public String getNombre(){
+        return this.nombre;
     }
-    public void setGenero(String nombre){
+    public String getApellido(){
+        return this.apellido;
+    }
+    public String getGenero(){
+        return this.genero;
+    }
+    public int getEdad(){
+        return this.edad;
+    }
+    public int getAnio(){
+        return this.anio;
+    }
 
-    }
-    public void setEdad(String apellido){
-        
-    }
-    public void setAnio(String nombre){
-
-    }
+    //Otros métodos.
     public String imprimir(){
         String a;
         return a;
