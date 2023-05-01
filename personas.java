@@ -1,6 +1,6 @@
 public class Personas{
     private String nombre, apellido, genero;
-    private int edad, anio;
+    private int edad, anio, dni;
     
     //Constructor DEF
     Personas(){
@@ -9,15 +9,17 @@ public class Personas{
        genero = "";
        edad = 0;
        anio = 0;
+       dni = 0;
     }
     
     //Constructor
-    Personas(String nombre, String apellido, String genero, int edad, int anio){
+    Personas(String nombre, String apellido, String genero, int edad, int anio, int dni){
         this.nombre = nombre;
         this.apellido = apellido;
         this.genero = genero;
         this.edad = edad;
         this.anio = anio;
+        this.dni = dni;
     }
     
     //Setters
@@ -36,6 +38,9 @@ public class Personas{
     public void setAnio(int anio){
         this.anio = anio;
     }
+    public void setDni(int dni){
+        this.dni = dni;
+    }
 
     //Getters
     public String getNombre(){
@@ -53,10 +58,7 @@ public class Personas{
     public int getAnio(){
         return this.anio;
     }
-
-    //Otros métodos.
-    public String imprimir(){
-        String a;
-        return a;
+    public int getDni(){
+        return this.dni;
     }
 }

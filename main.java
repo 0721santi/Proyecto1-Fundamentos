@@ -1,14 +1,17 @@
 import java.util.Scanner;
+import java.util.Random;
 public class main{
     public static void main(String[] args) {
         Scanner myScan = new Scanner(System.in);
         System.out.print("Ingrese cuantas filas desea en la matriz: ");
         int y = myScan.nextInt();
+        Random myRand = new Random();
         int[][] matriz1 = new int[y][2];
         String[][] matriz2 = new String[y][3];
         Personas p[] = new Personas[y];
         int val1 = 0;
         int val2 = 0;
+        int val3 = 0;
         int opc, val;
         String n = "";
         String a = "";
@@ -18,11 +21,15 @@ public class main{
             for(int j=0;j<2;j++){
                 if(j==0){
                     System.out.print("Ingrese la edad de la persona "+(i+1)+": ");
-                    matriz1[i][j] = myScan.nextInt();
+                    matriz1[i][j] = myRand.nextInt(100);
                 }
-                else{
+                else if (j==1){
                     System.out.print("Ingrese el año de nacimiento de la persona "+(i+1)+": ");
-                    matriz1[i][j] = myScan.nextInt();
+                    matriz1[i][j] = 2023-edad;
+                }
+                else if (j==2){
+                    System.out.print("Ingrese el dni de la persona "+(i+1)+": ");
+                    matriz1[i][j] = myRand.nextInt(y*2); 
                 }
             }
         }
@@ -50,8 +57,11 @@ public class main{
                 if(j==0){
                     val1 = matriz1[i][j];
                 }
-                else{
+                else if (j == 1){
                     val2 = matriz1[i][j];
+                }
+                else if (j == 2){
+                    val3 = matriz1[i][j];
                 }
             }
             for(int j=0;j<3;j++){
@@ -67,7 +77,7 @@ public class main{
                     }
                 }
             }
-            p[i] = new Personas(n, a, g, val1, val2);
+            p[i] = new Personas(n, a, g, val1, val2, val3);
         }
         while(true){
             System.out.println("**MENU**");
@@ -77,37 +87,6 @@ public class main{
             System.out.println("4. Salir.");
             System.out.print("Ingrese un número: ");
             opc = myScan.nextInt();
-            switch(opc){
-                case 1:
-                    System.out.println("**MENU DE VISUALIZACIÓN**");
-                    System.out.println("1. Ver género.");
-                    System.out.println("2. Ver edad.");
-                    System.out.println("3. Ver año de nacimiento.");
-                    System.out.println("4. Ver todos los datos:");
-                    System.out.print("Ingrese un número: ");
-                    opc = myScan.nextInt();
-                    System.out.print("Ingrese el índice de la persona (1, "+y+"): ");
-                    val = (myScan.nextInt() - 1);
-                    switch(opc){
-                        case 1:
-                            System.out.println("La persona "+(val+1)+" es: "+p[val].getNombre()+" "+p[val].getApellido()+" y es: "+p[val].getGenero()+".");
-                            break;
-                        case 2:
-                            System.out.println("La persona "+(val+1)+" es: "+p[val].getNombre()+" "+p[val].getApellido()+" y tiene: "+p[val].getEdad()+".");
-                            break;
-                        case 3:
-                            System.out.println("La persona "+(val+1)+" es: "+p[val].getNombre()+" "+p[val].getApellido()+" y nació en el año: "+p[val].getAnio()+".");
-                            break;
-                        case 4:
-                            System.out.println("La persona "+(val+1)+" es: "+p[val].getNombre()+" "+p[val].getApellido()+". Es: "+p[val].getGenero()+", nació en el año: "+p[val].getAnio()+" y tiene: "+p[val].getEdad()+".");
-                            break;
-                        default:
-                            System.out.print("Valor inválido. Ingrese un valor de los que hay en el menu: ");
-                            opc = myScan.nextInt();
-                            continue;
-                    }
-                    break;
-            }
         }
     }
 }
