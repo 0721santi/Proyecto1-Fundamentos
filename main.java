@@ -1,16 +1,13 @@
 import java.util.Scanner;
-import java.util.Random;
 public class main{
-
         public static void main(String[] args) {
         Scanner myScan = new Scanner(System.in);
-        Random myRand = new Random();
         System.out.print("Ingrese cuantas filas desea en la matriz: ");
         int y = myScan.nextInt();
         int[][] matriz1 = new int[y][3];
         String[][] matriz2 = new String[y][3];
         Personas p[] = new Personas[y];
-        int opc, dni, edad;
+        int opc, dni;
         boolean exec = false, inv = false, execord = false;
         while(true){
             MainMatrices.getMenu();
@@ -146,7 +143,17 @@ public class main{
                             System.out.println("Pasos: "+MainMatrices.BSMatriz1Anio(matriz1, y));
                             execord = true;
                             break;
+                        case 8:
+                            break;
+                        default:
+                            System.out.print("Valor inválido. Ingrese un valor de los que hay en el menu: ");
+                            opc = myScan.nextInt();
+                            continue;
                     }
+                default:
+                    System.out.print("Valor inválido. Ingrese un valor de los que hay en el menu: ");
+                    opc = myScan.nextInt();
+                    continue;    
             }
         }
     }
