@@ -35,7 +35,7 @@ public class MainMatrices {
     static void getMenu(){
         System.out.println("**MENU**");
         System.out.println("1. Crear matrices con datos aleatorios.");
-        System.out.println("2. Crear matrices con datos entrad por el usuario.");
+        System.out.println("2. Crear matrices con datos entrados por el usuario.");
         System.out.println("3. Generar matriz de objetos 'Persona'.");
         System.out.println("4. Mostrar matrices.");
         System.out.println("5. Mostrar matrices inversas.");
@@ -278,6 +278,7 @@ public class MainMatrices {
         return pasos;
     }
     static int BSMatriz1DNI(int[][] matriz1, int y){
+        //Bubble Sort Matriz 1 por DNI
         int pasos = 0;
         boolean swapped;
         for(int i=0;i<y-1;i++){
@@ -296,6 +297,7 @@ public class MainMatrices {
         return pasos;
     }
     static void QSMatriz1DNI(int[][] matriz1, int inicio, int fin, int[] pasos){
+        //Quick Sort Matriz 1 por DNI
         if(inicio < fin){
             int pivot = partition(matriz1, inicio, fin, pasos);
             QSMatriz1DNI(matriz1, inicio, pivot-1,pasos);
@@ -315,5 +317,101 @@ public class MainMatrices {
         swap(matriz1,i+1,fin);
         pasos[0]++;
         return i+1;
+    }
+    static int[] buscarEdadAnio(Personas p[], int y, int dni, int[][] matriz1){
+        Scanner myScan = new Scanner(System.in);
+        int val = 0;
+        int left = 0;
+        int right = y-1;
+        boolean exist = false;
+        while(true){
+            while (left <= right) {
+                int mid = (left + right) / 2;
+                if (matriz1[mid][2] == dni) {
+                    val = mid;
+                    exist = true;
+                    break;
+                }
+                if (matriz1[mid][2] < dni) {
+                    left = mid + 1;
+                }
+                else {
+                    right = mid - 1;
+                }
+            }
+            if(exist == false){
+                System.out.print("El DNI no existe. Ingrese un nuevo valor: ");
+                dni = myScan.nextInt();
+                continue;
+            }
+            break;
+        }
+        int[] res = {p[val].getEdad(), p[val].getAnio()};
+        return res;
+    }
+    static String[] buscarNombre(Personas p[], int y, int dni, int[][] matriz1){
+        Scanner myScan = new Scanner(System.in);
+        int val = 0;
+        int left = 0;
+        int right = y-1;
+        boolean exist = false;
+        while(true){
+            while (left <= right) {
+                int mid = (left + right) / 2;
+                if (matriz1[mid][2] == dni) {
+                    val = mid;
+                    exist = true;
+                    break;
+                }
+                if (matriz1[mid][2] < dni) {
+                    left = mid + 1;
+                }
+                else {
+                    right = mid - 1;
+                }
+            }
+            if(exist == false){
+                System.out.print("El DNI no existe. Ingrese un nuevo valor: ");
+                dni = myScan.nextInt();
+                continue;
+            }
+            break;
+        }
+        String[] res = {p[val].getNombre()+" "+p[val].getApellido()};
+        return res;
+    }
+    static int SSMatriz1Edad(int[][] matriz1, int y){
+        //Selection Sort Matriz 1 por Edad
+        int pasos = 0;
+        for(int i = 0;i<y-1;i++){
+            int minpos = i;
+            for(int j=i+1;j<y;j++){
+                pasos++;
+                if(matriz1[j][0]<matriz1[minpos][0]){
+                    minpos = j;
+                }
+            }
+            swap(matriz1, minpos, i);
+        }
+        return pasos;
+    }
+    static int BSMatriz1Anio(int[][] matriz1, int y){
+        //Bubble Sort Matriz 1 por Anio
+        int pasos = 0;
+        boolean swapped;
+        for(int i=0;i<y-1;i++){
+            swapped = false;
+            for(int j=0;j<((y-i)-1);j++){
+                pasos++;
+                if(matriz1[j][1]>matriz1[j+1][1]){
+                    swap(matriz1,j,j+1);
+                    swapped = true;
+                }
+            }
+            if(!swapped){
+                break;
+            }
+        }
+        return pasos;
     }
 }

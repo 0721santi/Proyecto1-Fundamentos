@@ -10,8 +10,8 @@ public class main{
         int[][] matriz1 = new int[y][3];
         String[][] matriz2 = new String[y][3];
         Personas p[] = new Personas[y];
-        int opc, dni;
-        boolean exec = false, inv = false;
+        int opc, dni, edad;
+        boolean exec = false, inv = false, execord = false;
         while(true){
             MainMatrices.getMenu();
             opc = myScan.nextInt();
@@ -42,6 +42,7 @@ public class main{
                         continue;
                     }
                 case 4:
+                    inv = false;
                     System.out.println("--");
                     System.out.println("Matriz 1");
                     MainMatrices.imprimirMatrizNumero(matriz1, y, inv);
@@ -90,9 +91,11 @@ public class main{
                     switch(opc){
                         case 1:
                             System.out.println("Pasos: "+MainMatrices.SSMatriz1DNI(matriz1, y));
+                            execord = true;
                             break;
                         case 2:
                             System.out.println("Pasos: "+MainMatrices.BSMatriz1DNI(matriz1, y));
+                            execord = true;
                             break;
                         case 3:
                             int[] pasos = {0};
@@ -101,6 +104,47 @@ public class main{
                             matriz1[0][2] = 0;
                             MainMatrices.QSMatriz1DNI(matriz1, inicio, fin, pasos);
                             System.out.println("Pasos: "+pasos[0]);
+                            execord = true;
+                            break;
+                        case 4:
+                            System.out.print("Ingrese un DNI: ");
+                            dni = myScan.nextInt();
+                            if(execord == true){
+                                String[] resultstrBS = MainMatrices.buscarNombre(p, y, dni, matriz1);
+                                System.out.println("Nombre - Apellido");
+                                System.out.print(resultstrBS[0]);
+                                System.out.println("");
+                                break;
+                            }
+                            else{
+                                System.out.println("Porfavor, ordene la matrices primero. Seleccione una opción de ordenamiento (1,3)");
+                                opc = myScan.nextInt();
+                                continue;
+                            }
+                        case 5:
+                            System.out.print("Ingrese un DNI: ");
+                            dni = myScan.nextInt();
+                            if(execord == true){
+                                int[] resultintBS = MainMatrices.buscarEdadAnio(p, y, dni, matriz1);
+                                System.out.println("Edad - Año");
+                                for(int i = 0;i<2;i++){
+                                    System.out.print(resultintBS[i]+" ");
+                                }
+                                System.out.println("");
+                                break;
+                            }
+                            else{
+                                System.out.println("Porfavor, ordene la matrices primero. Seleccione una opción de ordenamiento (1,3)");
+                                opc = myScan.nextInt();
+                                continue;
+                            }
+                        case 6:
+                            System.out.println("Pasos: "+MainMatrices.SSMatriz1Edad(matriz1, y));
+                            execord = true;
+                            break;
+                        case 7:
+                            System.out.println("Pasos: "+MainMatrices.BSMatriz1Anio(matriz1, y));
+                            execord = true;
                             break;
                     }
             }
